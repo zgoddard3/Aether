@@ -601,7 +601,7 @@ MonoBehaviour:
   m_FollowOffset: {x: 0, y: 5, z: -20}
   m_XDamping: 1
   m_YDamping: 1
-  m_ZDamping: 1
+  m_ZDamping: 0.5
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1043,6 +1043,7 @@ MonoBehaviour:
   deflectionCoeff: -0.5
   deflection: 0
   data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
+  channel: 1
 --- !u!1 &959605725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,9 +1092,10 @@ MonoBehaviour:
   span: 4
   chord: 1
   baseDrag: 0
-  deflectionCoeff: 2
+  deflectionCoeff: 1
   deflection: 0
   data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
+  channel: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,7 +1147,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1399,12 +1401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c4f0030bef57642b68a557ab9bf451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airfoils: []
-  wing: {fileID: 1580464188}
-  tail: {fileID: 959605727}
-  ailerons:
+  airfoils:
+  - {fileID: 1580464188}
+  - {fileID: 959605727}
   - {fileID: 958711203}
   - {fileID: 2085410112}
+  - {fileID: 2111443892}
   thrust: 3000
 --- !u!54 &1515434096
 Rigidbody:
@@ -1591,6 +1593,7 @@ MonoBehaviour:
   deflectionCoeff: 0
   deflection: 0
   data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
+  channel: 0
 --- !u!1 &1723701483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,7 +1791,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -1868,6 +1871,7 @@ MonoBehaviour:
   deflectionCoeff: 0.5
   deflection: 0
   data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
+  channel: 1
 --- !u!1 &2111443890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,3 +1923,4 @@ MonoBehaviour:
   deflectionCoeff: 0
   deflection: 0
   data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
+  channel: 3

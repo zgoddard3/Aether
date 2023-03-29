@@ -6,9 +6,6 @@ using UnityEngine;
 public class Airplane : MonoBehaviour
 {
     public List<Airfoil> airfoils;
-    public Airfoil wing;
-    public Airfoil tail;
-    public Airfoil[] ailerons;
     public float thrust;
     private Rigidbody rb;
     private Vector3 input;
@@ -18,7 +15,6 @@ public class Airplane : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
-        FindAirfoils();
         print(rb.inertiaTensor);
         print(rb.centerOfMass);
     }
@@ -31,24 +27,28 @@ public class Airplane : MonoBehaviour
     }
 
     void FixedUpdate() {
-        tail.deflection = input.y;
-        foreach (Airfoil airfoil in ailerons) {
-            airfoil.deflection = input.x;
-        }
-        // print(transform.InverseTransformVector(rb.velocity));
-        // print(wing.Aero(rb));
         foreach (Airfoil airfoil in airfoils) {
+            switch (airfoil.channel) {
+                case Airfoil.Channel.NONE:
+                    break;
+                case Airfoil.Channel.AILERON:
+                    airfoil.deflection = input.x;
+                    break;
+                case Airfoil.Channel.ELEVATOR:
+                    airfoil.deflection = input.y;
+                    break;
+                default:
+                    break;
+            }
             Vector3 aero = airfoil.Aero(rb) * Time.fixedDeltaTime;
-            // print(aero);
-            // aero = transform.InverseTransformVector(aero) * Time.fixedDeltaTime;
-            
             rb.AddForceAtPosition(aero, airfoil.transform.position, ForceMode.Impulse);
         }
 
         rb.AddForce(transform.TransformVector(Vector3.forward) * thrust * Time.fixedDeltaTime, ForceMode.Impulse);
     }
 
-    void FindAirfoils() {
+    public void FindAirfoils() {
+        airfoils.Clear();
         foreach (Airfoil airfoil in GetComponentsInChildren<Airfoil>()) {
             airfoils.Add(airfoil);
         }
