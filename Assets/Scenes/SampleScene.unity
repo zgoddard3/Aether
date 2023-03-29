@@ -1042,6 +1042,7 @@ MonoBehaviour:
   baseDrag: 0.01
   deflectionCoeff: -0.5
   deflection: 0
+  data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
 --- !u!1 &959605725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,8 +1091,9 @@ MonoBehaviour:
   span: 4
   chord: 1
   baseDrag: 0
-  deflectionCoeff: 0.5
+  deflectionCoeff: 2
   deflection: 0
+  data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1590,7 @@ MonoBehaviour:
   baseDrag: 0.01
   deflectionCoeff: 0
   deflection: 0
+  data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
 --- !u!1 &1723701483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,6 +1867,7 @@ MonoBehaviour:
   baseDrag: 0.01
   deflectionCoeff: 0.5
   deflection: 0
+  data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}
 --- !u!1 &2111443890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,3 +1918,4 @@ MonoBehaviour:
   baseDrag: 0
   deflectionCoeff: 0
   deflection: 0
+  data: {fileID: 11400000, guid: f5b4367ead706fc4dadc3ba2a403b825, type: 2}

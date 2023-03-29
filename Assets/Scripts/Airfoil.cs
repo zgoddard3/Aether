@@ -13,6 +13,7 @@ public class Airfoil : MonoBehaviour
     private float aspectRatio;
     public float deflectionCoeff;
     public float deflection;
+    public AirfoilData data;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +33,14 @@ public class Airfoil : MonoBehaviour
         Vector3 velocity = rb.GetPointVelocity(transform.position);
         velocity = transform.InverseTransformVector(velocity);
         float alpha = Mathf.Atan2(-velocity.y, velocity.z);
-        float cl = 2 * Mathf.PI * alpha + deflection * deflectionCoeff;
-        float cd = Mathf.Pow(cl, 2) / (Mathf.PI * aspectRatio) + baseDrag;
+        float alphaDeg = alpha * Mathf.Rad2Deg;
+        float cl = Mathf.Sign(alphaDeg) * data.liftCoeff.Evaluate(Mathf.Abs(alphaDeg)) + deflection * deflectionCoeff;
+        if (gameObject.name.CompareTo("Wing") == 0) {
+            print(alphaDeg);
+            print(cl);
+        }
+        
+        float cd = data.dragCoeff.Evaluate(Mathf.Abs(alphaDeg));//Mathf.Pow(cl, 2) / (Mathf.PI * aspectRatio) + baseDrag;
         float pbar = velocity.sqrMagnitude * airDensity / 2;
         float drag = cd * pbar * area;
         float lift = cl * pbar * area;
