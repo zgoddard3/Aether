@@ -10,12 +10,13 @@ public class Airplane : MonoBehaviour
     public float thrust;
     private Rigidbody rb;
     private Vector3 input;
-
+    private Gamepad gamepad;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
+        gamepad = Gamepad.current;
         print(rb.inertiaTensor);
         print(rb.centerOfMass);
     }
@@ -25,12 +26,14 @@ public class Airplane : MonoBehaviour
     {
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
+
+        if (gamepad != null) {
+            input = gamepad.leftStick.ReadValue();
+        }
+        
     }
 
     void FixedUpdate() {
-
-        var gamepad = Gamepad.current;
-        Vector2 stickL = gamepad.leftStick.ReadValue();
 
         foreach (Airfoil airfoil in airfoils) {
             switch (airfoil.channel) {
@@ -38,11 +41,9 @@ public class Airplane : MonoBehaviour
                     break;
                 case Airfoil.Channel.AILERON:
                     airfoil.deflection = input.x;
-                    airfoil.deflection = stickL.x;
                     break;
                 case Airfoil.Channel.ELEVATOR:
                     airfoil.deflection = input.y;
-                    airfoil.deflection = stickL.y;
                     break;
                 default:
                     break;
